@@ -1,0 +1,3 @@
+module Foyer
+  VERSION = "0.0.1"
+end
