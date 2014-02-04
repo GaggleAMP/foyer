@@ -1,4 +1,4 @@
-Copyright (c) 2014 Jason Nochlin
+Copyright (c) 2014 GaggleAMP, Inc
 
 MIT License
 
