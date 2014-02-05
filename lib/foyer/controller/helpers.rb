@@ -1,0 +1,55 @@
+module Foyer
+  module Controller
+    module Helpers
+      extend ActiveSupport::Concern
+
+      included do
+        helper_method :current_user
+      end
+
+      def sign_in(user)
+        session[Foyer.session_key] = {
+          id: user.id,
+          current_sign_in_at: Time.now,
+          current_sign_in_ip: request.ip,
+        }
+      end
+
+      def sign_out
+        session.delete(Foyer.session_key)
+      end
+
+      def user_signed_in?
+        authenticated_user_id.present? and current_user.present?
+      end
+
+      def current_user
+        return nil unless authenticated_user_id.present?
+        @current_user ||= find_user_by_id(authenticated_user_id)
+      end
+
+      def authenticate_user!
+        unless user_signed_in?
+          redirect_to "/auth/#{Foyer.identity_provider}?origin=#{CGI.escape request.fullpath}"
+        end
+      end
+
+      def find_user_by_id(user_id)
+        Foyer.user_finder.call(user_id)
+      end
+
+      def authenticated_user_id
+        (session[Foyer.session_key]||{})[:id]
+      end
+
+      module ClassMethods
+        def set_user_finder(&blk)
+          if blk.arity != 1
+            raise ":user_finder must accept 1 argument (user_id)"
+          end
+          Foyer.user_finder = blk
+        end
+      end
+    end
+  end
+end
