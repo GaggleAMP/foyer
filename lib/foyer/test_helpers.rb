@@ -1,7 +1,7 @@
 module Foyer
   module TestHelpers
     def sign_in(user)
-      session[Foyer.session_key] = { id: 4 }
+      session[Foyer.session_key] = { id: user.id }
     end
 
     def sign_out
