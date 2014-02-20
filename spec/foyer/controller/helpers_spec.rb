@@ -6,6 +6,10 @@ describe Foyer::Controller::Helpers do
       nil
     end
 
+    def session
+      @session ||= {}
+    end
+
     include Foyer::Controller::Helpers
   end
 
@@ -23,12 +27,13 @@ describe Foyer::Controller::Helpers do
     end
   end
 
-  describe "#find_user_by_id" do
+  describe "#current_user" do
     it "calls the user_finder method" do
       @called = false
+      subject.user_session[:id] = '_'
       Foyer.user_finder = lambda { |_| @called = true }
 
-      subject.find_user_by_id '_'
+      subject.current_user
 
       expect(@called).to eq true
     end

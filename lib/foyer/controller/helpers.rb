@@ -20,26 +20,23 @@ module Foyer
       end
 
       def user_signed_in?
-        authenticated_user_id.present? and current_user.present?
+        user_session.present? and current_user.present?
       end
 
       def current_user
-        return nil unless authenticated_user_id.present?
-        @current_user ||= find_user_by_id(authenticated_user_id)
+        return nil unless user_session.present?
+        @current_user ||= Foyer.user_finder.call(user_session[:id])
+      end
+
+      def user_session
+        session[Foyer.session_key]||= {}
+        session[Foyer.session_key]
       end
 
       def authenticate_user!
         unless user_signed_in?
           redirect_to "/auth/#{Foyer.identity_provider}?origin=#{CGI.escape request.fullpath}"
         end
-      end
-
-      def find_user_by_id(user_id)
-        Foyer.user_finder.call(user_id)
-      end
-
-      def authenticated_user_id
-        (session[Foyer.session_key]||{})[:id]
       end
 
       module ClassMethods
