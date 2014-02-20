@@ -4,7 +4,7 @@ module Foyer
       extend ActiveSupport::Concern
 
       included do
-        helper_method :current_user
+        helper_method :current_user, :user_signed_in?
       end
 
       def sign_in(user)
