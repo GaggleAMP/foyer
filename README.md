@@ -9,7 +9,19 @@ sign on server that is configured as an OmniAuth provider
 
 ## Setup and Configuration
 
-In your ApplicationController:
+Setup as normal the `omniauth` gem. Remember to include in `routes.rb` the
+implementating controller action that will call the `sign_in` method:
+
+```ruby
+Rails.application.routes.draw do
+  get '/auth/:provider/callback', to: 'omniauth_callbacks#callback'
+end
+```
+
+You may extend the provided `Foyer::OmniauthCallbacksController`, as described
+later in this document, to facilitate the implementation.
+
+Then in your ApplicationController:
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -30,7 +42,7 @@ You can also configure the user finder in an initializer:
 Foyer.user_finder = lambda { |user_id| ... }
 ```
 
-Besiders `.user\_finder` there are some additional configuration
+Besides `Foyer.user_finder` there are some additional configuration
 settings:
 
 ```ruby
@@ -47,7 +59,7 @@ Currently, the session is the only store available.
 Once the setup is complete, you will have the following methods available in
 controllers that include `Foyer::Controller::Helpers`:
 ```
-authenticate\_user! - Before filter that redirects unauthenticated users 
+authenticate_user! - Before filter that redirects unauthenticated users 
                       to omniauth
 
 sign_in(user) - Pass a user object to this method to sign that user in.
@@ -64,7 +76,7 @@ sign_out - Signs out the authenticated user by clearing the session
 
 ### In Views
 
-`current\_user` and `user\_signed\_in?` are available as helper methods
+`current_user` and `user_signed_in?` are available as helper methods
 in views.
 
 ### Routes
@@ -104,7 +116,7 @@ You can inherit from it in your application.
 
 Example:
 ```ruby
-class FoyerIdentityProviderController < ProviderAuthenticateable::OmniauthCallbacksController
+class OmniauthCallbacksController < Foyer::OmniauthCallbacksController
   def callback
     user = User.find_or_initialize_by(uid: auth_hash.uid.to_s) do |u|
       u.email = auth_hash.info.email
