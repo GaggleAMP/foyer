@@ -2,6 +2,11 @@ module Foyer
   class OmniauthCallbacksController < ActionController::Base
     include Controller::Helpers
 
+    def callback
+      raise NotImplementedError
+    end
+
+    protected
     def after_sign_in_path
       origin || root_path
     end

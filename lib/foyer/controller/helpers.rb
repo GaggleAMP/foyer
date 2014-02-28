@@ -7,6 +7,7 @@ module Foyer
         helper_method :current_user, :user_signed_in?
       end
 
+      protected
       def sign_in(user)
         session[Foyer.session_key] = {
           id: user.id,
