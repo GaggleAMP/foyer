@@ -12,8 +12,15 @@ module Foyer
   mattr_accessor :user_finder
   @@user_finder = lambda { |_| raise 'Override this method' }
 
+  mattr_accessor :token_finder
+  @@token_finder = lambda { |_| raise 'Override this method' }
+
   module Controller
     autoload :Helpers, 'foyer/controller/helpers'
+  end
+
+  module Grape
+    autoload :Helpers, 'foyer/grape/helpers'
   end
 
   autoload :OmniauthCallbacksController, 'foyer/omniauth_callbacks_controller'
