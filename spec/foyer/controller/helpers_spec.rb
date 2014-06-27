@@ -30,7 +30,7 @@ describe Foyer::Controller::Helpers do
   describe "#current_user" do
     it "calls the user_finder method" do
       @called = false
-      subject.user_session[:id] = '_'
+      subject.user_session['id'] = '_'
       Foyer.user_finder = lambda { |_| @called = true }
 
       subject.current_user
