@@ -9,9 +9,9 @@ module Foyer
 
       def sign_in(user)
         session[Foyer.session_key] = {
-          'id' => user.id,
-          'current_sign_in_at' => Time.now,
-          'current_sign_in_ip' => request.ip,
+          id: user.id,
+          current_sign_in_at: Time.now,
+          current_sign_in_ip: request.ip,
         }
       end
 
@@ -25,7 +25,7 @@ module Foyer
 
       def current_user
         return nil unless user_session.present?
-        @current_user ||= Foyer.user_finder.call(user_session['id'])
+        @current_user ||= Foyer.user_finder.call(user_session[:id])
       end
 
       def user_session
