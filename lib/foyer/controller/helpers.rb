@@ -12,7 +12,7 @@ module Foyer
           id: user.id,
           current_sign_in_at: Time.now,
           current_sign_in_ip: request.ip,
-        }
+        }.with_indifferent_access
       end
 
       def sign_out
@@ -29,7 +29,8 @@ module Foyer
       end
 
       def user_session
-        session[Foyer.session_key]||= {}
+        session[Foyer.session_key] ||= {}
+        session[Foyer.session_key] = session[Foyer.session_key].with_indifferent_access
         session[Foyer.session_key]
       end
 
