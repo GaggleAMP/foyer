@@ -1,4 +1,5 @@
 require 'action_dispatch/routing/mapper'
+require 'active_support/hash_with_indifferent_access'
 
 module ActionDispatch::Routing
   class Mapper
