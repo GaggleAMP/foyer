@@ -26,7 +26,7 @@ module Foyer
 
       def current_user
         return nil unless user_session.present?
-        @current_user ||= Foyer.user_finder.call(user_session[:id])
+        @current_user ||= Foyer.user_finder.call(user_session.symbolize_keys![:id])
       end
 
       def user_session
