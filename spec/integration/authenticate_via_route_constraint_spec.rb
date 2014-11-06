@@ -1,7 +1,7 @@
 require 'ostruct'
 require 'spec_helper'
 
-describe "authentication via routes helper" do
+describe "authentication via routes helper", :type => :request do
   it "does not allow an unauthenticated user to access to route" do
     expect {
       get '/authenticated_by_route_constraint'

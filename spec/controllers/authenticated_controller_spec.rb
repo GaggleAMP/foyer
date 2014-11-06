@@ -2,7 +2,7 @@ require 'ostruct'
 
 require 'spec_helper'
 
-describe AuthenticatedController do
+describe AuthenticatedController, :type => :controller do
   describe "not authenticated" do
     it "redirects to the identity_provider" do
       get :index
