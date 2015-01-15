@@ -4,6 +4,7 @@ module Foyer
       extend ActiveSupport::Concern
 
       protected
+
       def user_signed_in?
         current_user.present?
       end

@@ -8,6 +8,7 @@ module Foyer
       end
 
       protected
+
       def sign_in(user)
         session[Foyer.session_key] = {
           id: user.id,
