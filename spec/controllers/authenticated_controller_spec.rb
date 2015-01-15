@@ -21,7 +21,7 @@ describe AuthenticatedController, type: :controller do
   end
 
   describe 'after authenticating' do
-    let(:user) { OpenStruct.new.tap { |i| i.id = rand(10000) } }
+    let(:user) { OpenStruct.new.tap { |i| i.id = rand(10_000) } }
     before do
       sign_in user
       Foyer.user_finder = ->(_) { user }
