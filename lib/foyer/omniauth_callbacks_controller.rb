@@ -8,7 +8,8 @@ module Foyer
 
     protected
     def after_sign_in_path
-      origin || root_path
+      return origin if origin.to_s.match(/^\//) || origin.to_s.match(%r{^#{request.scheme}://#{request.host}})
+      root_path
     end
 
     private
