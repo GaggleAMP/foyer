@@ -13,7 +13,7 @@ module Foyer
         session[Foyer.session_key] = {
           id: user.id,
           current_sign_in_at: Time.now,
-          current_sign_in_ip: request.ip,
+          current_sign_in_ip: request.ip
         }.with_indifferent_access
       end
 
