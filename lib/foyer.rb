@@ -3,6 +3,9 @@ require 'foyer/engine'
 require 'foyer/rails'
 
 module Foyer
+  # Class variables are required for the implementation of this class.
+  # rubocop:disable Style/ClassVars
+
   mattr_accessor :identity_provider
   @@identity_provider = :gaggleamp
 
@@ -14,6 +17,8 @@ module Foyer
 
   mattr_accessor :token_finder
   @@token_finder = ->(_) { fail 'Override this method' }
+
+  # rubocop:enable Style/ClassVars
 
   module Controller
     autoload :Helpers, 'foyer/controller/helpers'
