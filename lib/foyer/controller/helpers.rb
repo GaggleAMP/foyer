@@ -37,9 +37,8 @@ module Foyer
       end
 
       def authenticate_user!
-        unless user_signed_in?
-          redirect_to "/auth/#{Foyer.identity_provider}?origin=#{CGI.escape request.fullpath}"
-        end
+        return if user_signed_in?
+        redirect_to "/auth/#{Foyer.identity_provider}?origin=#{CGI.escape request.fullpath}"
       end
 
       module ClassMethods
