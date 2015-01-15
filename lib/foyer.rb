@@ -10,10 +10,10 @@ module Foyer
   @@session_key = 'foyer.authenticated_user'
 
   mattr_accessor :user_finder
-  @@user_finder = lambda { |_| raise 'Override this method' }
+  @@user_finder = lambda { |_| fail 'Override this method' }
 
   mattr_accessor :token_finder
-  @@token_finder = lambda { |_| raise 'Override this method' }
+  @@token_finder = lambda { |_| fail 'Override this method' }
 
   module Controller
     autoload :Helpers, 'foyer/controller/helpers'

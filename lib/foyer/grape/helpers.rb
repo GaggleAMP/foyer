@@ -21,7 +21,7 @@ module Foyer
       module ClassMethods
         def set_token_finder(&blk)
           if blk.arity != 1
-            raise ':token_finder must accept 1 argument (token)'
+            fail ':token_finder must accept 1 argument (token)'
           end
           Foyer.token_finder = blk
         end

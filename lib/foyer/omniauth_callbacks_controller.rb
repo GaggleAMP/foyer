@@ -3,7 +3,7 @@ module Foyer
     include Controller::Helpers
 
     def callback
-      raise NotImplementedError
+      fail NotImplementedError
     end
 
     protected

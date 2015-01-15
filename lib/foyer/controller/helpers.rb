@@ -45,7 +45,7 @@ module Foyer
       module ClassMethods
         def set_user_finder(&blk)
           if blk.arity != 1
-            raise ':user_finder must accept 1 argument (user_id)'
+            fail ':user_finder must accept 1 argument (user_id)'
           end
           Foyer.user_finder = blk
         end
