@@ -31,7 +31,7 @@ describe Foyer::Controller::Helpers do
     it 'calls the user_finder method' do
       @called = false
       subject.send(:user_session)[:id] = '_'
-      Foyer.user_finder = lambda { |_| @called = true }
+      Foyer.user_finder = ->(_) { @called = true }
 
       subject.send :current_user
 

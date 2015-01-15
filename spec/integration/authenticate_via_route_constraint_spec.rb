@@ -17,7 +17,7 @@ describe 'authentication via routes helper', :type => :request do
   end
 
   it 'allows only certain users to access the route' do
-    Foyer.user_finder = lambda { |user_id| nil }
+    Foyer.user_finder = ->(_user_id) { nil }
 
     post '/sign_in'
 

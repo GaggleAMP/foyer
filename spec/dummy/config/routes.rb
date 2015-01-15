@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get '/authenticated_by_route_constraint' => 'unauthenticated#index'
   end
 
-  authenticate lambda { |user| false } do
+  authenticate ->(_user) { false } do
     get '/authenticated_by_route_constraint_which_blocks_all_users' => 'unauthenticated#index'
   end
 end

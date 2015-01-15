@@ -24,7 +24,7 @@ describe AuthenticatedController, :type => :controller do
     let(:user) { OpenStruct.new.tap { |i| i.id = rand(10000) } }
     before do
       sign_in user
-      Foyer.user_finder = lambda { |_| user }
+      Foyer.user_finder = ->(_) { user }
     end
 
     it 'allows user to access the action' do
