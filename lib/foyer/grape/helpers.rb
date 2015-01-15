@@ -20,9 +20,7 @@ module Foyer
 
       module ClassMethods
         def set_token_finder(&blk) # rubocop:disable Style/AccessorMethodName
-          if blk.arity != 1
-            fail ':token_finder must accept 1 argument (token)'
-          end
+          fail ':token_finder must accept 1 argument (token)' unless blk.arity == 1
           Foyer.token_finder = blk
         end
       end
