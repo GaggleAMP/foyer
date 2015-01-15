@@ -43,7 +43,7 @@ module Foyer
       end
 
       module ClassMethods
-        def set_user_finder(&blk)
+        def set_user_finder(&blk) # rubocop:disable Style/AccessorMethodName
           if blk.arity != 1
             fail ':user_finder must accept 1 argument (user_id)'
           end
