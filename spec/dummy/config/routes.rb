@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   post '/sign_in' => 'sessions#developer'
 
   get '/authenticated' => 'authenticated#index'

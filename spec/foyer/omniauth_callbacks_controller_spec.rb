@@ -18,6 +18,5 @@ module Foyer
         expect(controller.send :after_sign_in_path).to eq(origin)
       end
     end
-
   end
 end
