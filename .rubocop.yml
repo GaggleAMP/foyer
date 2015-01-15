@@ -27,7 +27,7 @@ AllCops:
     - 'config/unicorn.rb'
     - 'config/initializers/devise.rb'
     # Add your exclude files specific to this project here
-    #- 'config/initializers/maps.rb'
+    - 'spec/dummy/config/initializers/secret_token.rb'
 
 Style/AlignParameters:
   Enabled: true
