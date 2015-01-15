@@ -22,7 +22,7 @@ module Foyer
       end
 
       def user_signed_in?
-        user_session.present? and current_user.present?
+        user_session.present? && current_user.present?
       end
 
       def current_user
