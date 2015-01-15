@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   post '/sign_in' => 'sessions#developer'
 
-  get '/authenticated' => "authenticated#index"
+  get '/authenticated' => 'authenticated#index'
 
   authenticate do
     get '/authenticated_by_route_constraint' => 'unauthenticated#index'

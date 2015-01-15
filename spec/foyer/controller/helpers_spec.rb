@@ -15,8 +15,8 @@ describe Foyer::Controller::Helpers do
 
   subject { IncludesFoyerControllerHelpers.new }
 
-  describe ".set_user_finder" do
-    it "sets the :user_finder configuration to the provided block" do
+  describe '.set_user_finder' do
+    it 'sets the :user_finder configuration to the provided block' do
       expect {
         subject.class_eval do
           set_user_finder do |user_id|
@@ -27,8 +27,8 @@ describe Foyer::Controller::Helpers do
     end
   end
 
-  describe "#current_user" do
-    it "calls the user_finder method" do
+  describe '#current_user' do
+    it 'calls the user_finder method' do
       @called = false
       subject.send(:user_session)[:id] = '_'
       Foyer.user_finder = lambda { |_| @called = true }
