@@ -13,13 +13,13 @@ describe Foyer::Grape::Helpers do
 
   describe '.set_token_finder' do
     it 'sets the :token_finder configuration to the provided block' do
-      expect {
+      expect do
         subject.class_eval do
           set_token_finder do |token|
             token
           end
         end
-      }.to change(Foyer, :token_finder)
+      end.to change(Foyer, :token_finder)
     end
   end
 

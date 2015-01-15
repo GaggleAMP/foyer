@@ -3,9 +3,7 @@ require 'spec_helper'
 
 describe 'authentication via routes helper', type: :request do
   it 'does not allow an unauthenticated user to access to route' do
-    expect {
-      get '/authenticated_by_route_constraint'
-    }.to raise_error(ActionController::RoutingError)
+    expect { get '/authenticated_by_route_constraint' }.to raise_error(ActionController::RoutingError)
   end
 
   it 'allows authenticated users to access the route' do
@@ -21,8 +19,7 @@ describe 'authentication via routes helper', type: :request do
 
     post '/sign_in'
 
-    expect {
-      get '/authenticated_by_route_constraint_which_blocks_all_users'
-    }.to raise_error(ActionController::RoutingError)
+    expect { get '/authenticated_by_route_constraint_which_blocks_all_users' }
+      .to raise_error(ActionController::RoutingError)
   end
 end

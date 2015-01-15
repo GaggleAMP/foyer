@@ -17,13 +17,13 @@ describe Foyer::Controller::Helpers do
 
   describe '.set_user_finder' do
     it 'sets the :user_finder configuration to the provided block' do
-      expect {
+      expect do
         subject.class_eval do
           set_user_finder do |user_id|
             user_id
           end
         end
-      }.to change(Foyer, :user_finder)
+      end.to change(Foyer, :user_finder)
     end
   end
 
