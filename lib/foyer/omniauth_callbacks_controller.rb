@@ -3,16 +3,18 @@ module Foyer
     include Controller::Helpers
 
     def callback
-      raise NotImplementedError
+      fail NotImplementedError
     end
 
     protected
+
     def after_sign_in_path
       return origin if origin.to_s.match(/^\//) || origin.to_s.match(%r{^#{request.scheme}://#{request.host}})
       root_path
     end
 
     private
+
     def origin
       request.env['omniauth.origin']
     end
