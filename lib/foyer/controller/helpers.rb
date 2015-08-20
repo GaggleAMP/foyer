@@ -12,7 +12,7 @@ module Foyer
       def sign_in(user)
         session[Foyer.session_key] = {
           id: user.id,
-          current_sign_in_at: Time.now,
+          current_sign_in_at: Time.now, # rubocop:disable Rails/TimeZone
           current_sign_in_ip: request.ip
         }.with_indifferent_access
       end
