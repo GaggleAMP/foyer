@@ -14,7 +14,8 @@ implementating controller action that will call the `sign_in` method:
 
 ```ruby
 Rails.application.routes.draw do
-  get '/auth/:provider/callback', to: 'omniauth_callbacks#callback'
+  match '/auth/:provider/callback', to: 'omniauth_callbacks#callback', via: [:get, :post]
+  match '/auth/failure', to: 'omniauth_callbacks#failure', via: :get
 end
 ```
 
@@ -26,6 +27,9 @@ Then in your ApplicationController:
 ```ruby
 class ApplicationController < ActionController::Base
   include Foyer::Controller::Helpers
+
+  # Require authentication for all routes.
+  before_action authenticate_user!
 
   set_user_finder do |user_id|
     # Code for retrieving a user from your database here
@@ -117,6 +121,10 @@ You can inherit from it in your application.
 Example:
 ```ruby
 class OmniauthCallbacksController < Foyer::OmniauthCallbacksController
+  def failure
+    redirect_to root_path, notice: 'Authentication failed!'
+  end
+
   def callback
     user = User.find_or_initialize_by(uid: auth_hash.uid.to_s) do |u|
       u.email = auth_hash.info.email

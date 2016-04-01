@@ -2,6 +2,14 @@ module Foyer
   class OmniauthCallbacksController < ActionController::Base
     include Controller::Helpers
 
+    def passthru
+      head :not_found
+    end
+
+    def failure
+      fail NotImplementedError
+    end
+
     def callback
       fail NotImplementedError
     end
