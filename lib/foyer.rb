@@ -24,6 +24,10 @@ module Foyer
     autoload :Helpers, 'foyer/controller/helpers'
   end
 
+  module API
+    autoload :Helpers, 'foyer/api/helpers'
+  end
+
   module Grape
     autoload :Helpers, 'foyer/grape/helpers'
   end
