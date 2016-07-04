@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Foyer::API::Helpers do
   class IncludesFoyerAPIHelpers
-    def headers
-      @headers ||= { 'Authorization' => 'Bearer _' }
+    def request
+      @request ||= Struct.new(:authorization).new('Bearer _')
     end
 
     include Foyer::API::Helpers

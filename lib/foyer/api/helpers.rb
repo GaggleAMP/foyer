@@ -10,7 +10,7 @@ module Foyer
       end
 
       def current_user
-        return nil unless headers['Authorization'] =~ /^Bearer (.*)/m
+        return nil unless request.authorization.to_s =~ /^Bearer (.*)/m
         @current_user ||= Foyer.token_finder.call(Regexp.last_match[1])
       end
 
