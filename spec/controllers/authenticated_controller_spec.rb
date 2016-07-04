@@ -15,7 +15,7 @@ describe AuthenticatedController, type: :controller do
 
       response.location.split('?').last.tap do |query_string|
         expect(query_string.split('=').first).to eq('origin')
-        expect(query_string.split('=').last).to eq(CGI.escape '/authenticated')
+        expect(query_string.split('=').last).to eq(CGI.escape('/authenticated'))
       end
     end
   end

@@ -8,14 +8,14 @@ module Foyer
       end
 
       it 'defaults to root path' do
-        expect(controller.send :after_sign_in_path).to eq('/')
+        expect(controller.send(:after_sign_in_path)).to eq('/')
       end
 
       it 'returns omniauth.origin if available' do
         origin = '/some_path'
         @request.env['omniauth.origin'] = origin
 
-        expect(controller.send :after_sign_in_path).to eq(origin)
+        expect(controller.send(:after_sign_in_path)).to eq(origin)
       end
     end
   end
