@@ -1,9 +1,9 @@
 class AuthenticatedController < ApplicationController
   include Foyer::Controller::Helpers
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def index
-    render text: 'success'
+    render body: 'success'
   end
 end

@@ -1,5 +1,5 @@
 class UnauthenticatedController < ApplicationController
   def index
-    render text: 'success'
+    render body: 'success'
   end
 end
