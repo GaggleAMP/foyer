@@ -54,6 +54,9 @@ Style/SignalException:
 
 ##################### Metrics ##################################
 
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
   AllowURI: true
