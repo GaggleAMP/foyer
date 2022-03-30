@@ -11,7 +11,7 @@ describe 'authentication via routes helper', type: :request do
 
     get '/authenticated_by_route_constraint'
 
-    expect(response).to be_success
+    expect(response).to be_successful
   end
 
   it 'allows only certain users to access the route' do
