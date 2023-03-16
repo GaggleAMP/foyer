@@ -1,0 +1,31 @@
+name: Run CI Build
+
+on: [push]
+
+# Cancel previous CI Build on the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }} 
+  cancel-in-progress: true
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby: ["2.3", "2.6", "2.7"]
+      fail-fast: false
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Use Ruby ${{ matrix.ruby }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler: '1.17.3'
+        bundler-cache: true
+
+    - name: Run tests
+      run: bundle exec rake
